@@ -6,7 +6,6 @@ import json
 import tempfile
 from datetime import date 
 from requests import RequestException
-import logging
 
 # Se sube dos niveles desde la ubicación actual (tests/) hasta llegar a la raíz del proyecto
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
