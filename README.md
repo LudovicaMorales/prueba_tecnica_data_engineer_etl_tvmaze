@@ -1,0 +1,2 @@
+# Prueba Técnica Data Engineer ETL TVmaze
+Este proyecto se encarga de extraer, transformar y cargar (ETL) información sobre shows de TV emitidos durante enero de 2024, haciendo uso de la API de TVMaze.
