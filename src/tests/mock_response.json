@@ -1,0 +1,96 @@
+[
+{
+    "id": 2719122,
+    "url": "https://www.tvmaze.com/episodes/2719122/predposlednaa-instancia-3x03-seria-23",
+    "name": "Серия 23",
+    "season": 3,
+    "number": 3,
+    "type": "regular",
+    "airdate": "2024-01-02",
+    "airtime": "",
+    "airstamp": "2024-01-02T00:00:00+00:00",
+    "runtime": 25,
+    "rating": {
+      "average": null
+    },
+    "image": null,
+    "summary": null,
+    "_links": {
+      "self": {
+        "href": "https://api.tvmaze.com/episodes/2719122"
+      },
+      "show": {
+        "href": "https://api.tvmaze.com/shows/59205",
+        "name": "Предпоследняя инстанция"
+      }
+    },
+    "_embedded": {
+      "show": {
+        "id": 59205,
+        "url": "https://www.tvmaze.com/shows/59205/predposlednaa-instancia",
+        "name": "Предпоследняя инстанция",
+        "type": "Scripted",
+        "language": "Russian",
+        "genres": [
+          "Drama",
+          "Comedy",
+          "Supernatural"
+        ],
+        "status": "Ended",
+        "runtime": null,
+        "averageRuntime": 26,
+        "premiered": "2022-01-01",
+        "ended": "2024-01-08",
+        "officialSite": "https://okko.tv/serial/predposlednjaja-instancija",
+        "schedule": {
+          "time": "",
+          "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
+        },
+        "rating": {
+          "average": null
+        },
+        "weight": 58,
+        "network": null,
+        "webChannel": {
+          "id": 366,
+          "name": "Okko",
+          "country": {
+            "name": "Russian Federation",
+            "code": "RU",
+            "timezone": "Asia/Kamchatka"
+          },
+          "officialSite": "https://okko.tv/"
+        },
+        "dvdCountry": null,
+        "externals": {
+          "tvrage": null,
+          "thetvdb": null,
+          "imdb": null
+        },
+        "image": {
+          "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/388/970660.jpg",
+          "original": "https://static.tvmaze.com/uploads/images/original_untouched/388/970660.jpg"
+        },
+        "summary": null,
+        "updated": 1704783571,
+        "_links": {
+          "self": {
+            "href": "https://api.tvmaze.com/shows/59205"
+          },
+          "previousepisode": {
+            "href": "https://api.tvmaze.com/episodes/2719129",
+            "name": "Серия 30"
+          }
+        }
+      }
+    }
+}
+]
