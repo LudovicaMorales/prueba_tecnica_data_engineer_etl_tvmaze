@@ -98,9 +98,20 @@ make run
 ```
 
 **Solo con Docker**:
-```bash
-docker run --rm -it -v "$(pwd)":/app --name prueba_tecnica_data_engineer_etl_tvmaze prueba_tecnica_data_engineer_etl_tvmaze:latest
-```
+- **Linux/macOS/WSL**
+    ```bash
+      docker run --rm -it -v "$(pwd)":/app --name prueba_tecnica_data_engineer_etl_tvmaze prueba_tecnica_data_engineer_etl_tvmaze:latest
+    ```
+
+- **Windows (PowerShell)**
+    ```bash
+      docker run --rm -it -v "${PWD}:/app" --name prueba_tecnica_data_engineer_etl_tvmaze prueba_tecnica_data_engineer_etl_tvmaze:latest
+    ```
+
+- **Windows (CMD)**
+    ```bash
+      docker run --rm -it -v "%cd%:/app" --name prueba_tecnica_data_engineer_etl_tvmaze prueba_tecnica_data_engineer_etl_tvmaze:latest
+    ```
 
 ### Verificación
 
