@@ -18,7 +18,7 @@ def create_dataframe_from_json(json_folder: str) -> pd.DataFrame:
             data = json.load(f)
             all_data.extend(data)
 
-    df = pd.json_normalize(all_data)
+    df = pd.json_normalize(all_data, sep='.')
     return df
 
 def safe_to_datetime(column):
@@ -39,11 +39,10 @@ def perform_data_cleaning(df):
     df_clean.columns = [col.strip().lower() for col in df_clean.columns]
 
     # Estandarizar fechas
-    df_clean['airdate'] = safe_to_datetime(df_clean['airdate'])
-    df_clean['airtime'] = safe_to_datetime(df_clean['airtime'])
-    df_clean['airstamp'] = safe_to_datetime(df_clean['airstamp'])
-    df_clean['_embedded.show.premiered'] = safe_to_datetime(df_clean['_embedded.show.premiered'])
-    df_clean['_embedded.show.ended'] = safe_to_datetime(df_clean['_embedded.show.ended'])
+    date_columns = ['airdate', 'airtime', 'airstamp', '_embedded.show.premiered', '_embedded.show.ended']
+    for col in date_columns:
+        if col in df_clean.columns:
+            df_clean[col] = safe_to_datetime(df_clean[col])
 
     # Limpiar texto HTML (para facilitar el análisis de texto)
     df_clean['summary'] = df_clean['summary'].apply(
