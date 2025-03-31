@@ -7,6 +7,7 @@ from typing import List
 from extraction import fetch_tvmaze_schedule, save_json_response
 from transform import create_dataframe_from_json, perform_data_cleaning
 from analysis import generate_profiling_report
+from load import save_as_parquet
 
 logging.basicConfig(
     level=logging.INFO,
@@ -30,6 +31,7 @@ def main():
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     json_folder = os.path.join(project_root, "json")
     profiling_folder = os.path.join(project_root, "profiling")
+    data_folder = os.path.join(project_root, "data")
 
     # 3. Extraer datos para todos los días de enero del 2024
     """all_dates_jan_2024 = get_all_dates_for_month(year, month)
@@ -50,6 +52,11 @@ def main():
     # 6. Limpieza / transformaciones
     logger.info("Limpieza y transformaciones en los datos...")
     df_clean = perform_data_cleaning(df)
+
+    # 7. Almacenar en Parquet (snappy)
+    logger.info("Guardando DataFrame limpio en formato Parquet snappy...")
+    parquet_file_path = os.path.join(data_folder, "clean_data_tvmaze_january_2024.parquet")
+    save_as_parquet(df_clean, parquet_file_path)
 
     logger.info("Proceso ETL finalizado exitosamente.")
 
