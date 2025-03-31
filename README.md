@@ -99,9 +99,7 @@ make run
 
 **Solo con Docker**:
 ```bash
-docker run --rm -it -v $(PWD):/app \
-  --name prueba_tecnica_data_engineer_etl_tvmaze \
-  prueba_tecnica_data_engineer_etl_tvmaze:latest
+docker run --rm -it -v $(PWD):/app --name prueba_tecnica_data_engineer_etl_tvmaze prueba_tecnica_data_engineer_etl_tvmaze:latest
 ```
 
 ### Verificación
