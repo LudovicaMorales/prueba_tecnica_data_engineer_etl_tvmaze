@@ -3,10 +3,12 @@ import os
 import sys
 from datetime import date, timedelta
 from typing import List
+import pandas as pd
 
 from extraction import fetch_tvmaze_schedule, save_json_response
 from transform import create_dataframe_from_json, perform_data_cleaning
 from analysis import generate_profiling_report
+from load import save_as_parquet, create_database_tables, insert_data_to_db
 
 logging.basicConfig(
     level=logging.INFO,
@@ -25,11 +27,14 @@ def main():
     # 1. Parámetros
     year = 2024
     month = 1
+    database_name = "tvmaze_data.db"
 
     # 2. Definición de rutas
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     json_folder = os.path.join(project_root, "json")
     profiling_folder = os.path.join(project_root, "profiling")
+    data_folder = os.path.join(project_root, "data")
+    db_folder = os.path.join(project_root, "db")
 
     # 3. Extraer datos para todos los días de enero del 2024
     """all_dates_jan_2024 = get_all_dates_for_month(year, month)
@@ -50,6 +55,23 @@ def main():
     # 6. Limpieza / transformaciones
     logger.info("Limpieza y transformaciones en los datos...")
     df_clean = perform_data_cleaning(df)
+
+    # 7. Almacenar en Parquet (snappy)
+    logger.info("Guardando DataFrame limpio en formato Parquet snappy...")
+    parquet_file_path = os.path.join(data_folder, "clean_data_tvmaze_january_2024.parquet")
+    #save_as_parquet(df_clean, parquet_file_path)
+
+    # 8. Cargar la información en DB (SQLite) del archivo .parquet
+    logger.info("Cargando datos en base de datos SQLite desde archivo .parquet...")
+
+    df_data_parquet = pd.read_parquet(parquet_file_path)
+    db_path = os.path.join(db_folder, database_name)
+    create_database_tables(db_path)
+    insert_data_to_db(df_data_parquet, db_path)
+
+    # 8. Operaciones de agregación
+    logger.info("Realizando consultas de agregación...")
+    #run_aggregations(df_clean)
 
     logger.info("Proceso ETL finalizado exitosamente.")
 
