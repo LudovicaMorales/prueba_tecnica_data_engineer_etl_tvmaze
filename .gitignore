@@ -32,12 +32,6 @@ htmlcov/
 # Archivos de profiling si los generas
 *.prof
 
-# Carpetas de datos si contienen temporales o datos sensibles
-data/raw/
-data/tmp/
-data/interim/
-*.sqlite3
-
 # Archivos específicos del IDE
 .vscode/
 .idea/
@@ -55,10 +49,7 @@ build/
 # Archivos exportados
 *.csv
 *.tsv
-*.parquet
 *.xlsx
-
 
 secrets.yaml
 config.yaml
-Dockefile
