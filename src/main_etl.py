@@ -37,11 +37,11 @@ def main():
     db_folder = os.path.join(project_root, "db")
 
     # 3. Extraer datos para todos los días de enero del 2024
-    """all_dates_jan_2024 = get_all_dates_for_month(year, month)
+    all_dates_jan_2024 = get_all_dates_for_month(year, month)
     for day in all_dates_jan_2024:
         logger.info(f"Obteniendo data para fecha: {day}")
         response_json = fetch_tvmaze_schedule(day)
-        save_json_response(response_json, json_folder, day)"""
+        save_json_response(response_json, json_folder, day)
     
     # 4. Transformar datos (generar Dataframe de Pandas)
     logger.info("Creando DataFrames desde JSON...")
@@ -49,8 +49,8 @@ def main():
 
     # 5. Generar profiling
     logger.info("Generando reporte de profiling...")
-    #profile_file = os.path.join(profiling_folder, "profiling_report.html")
-    #generate_profiling_report(df, profile_file)
+    profile_file = os.path.join(profiling_folder, "profiling_report.html")
+    generate_profiling_report(df, profile_file)
 
     # 6. Limpieza / transformaciones
     logger.info("Limpieza y transformaciones en los datos...")
@@ -59,15 +59,15 @@ def main():
     # 7. Almacenar en Parquet (snappy)
     logger.info("Guardando DataFrame limpio en formato Parquet snappy...")
     parquet_file_path = os.path.join(data_folder, "clean_data_tvmaze_january_2024.parquet")
-    #save_as_parquet(df_clean, parquet_file_path)
+    save_as_parquet(df_clean, parquet_file_path)
 
     # 8. Cargar la información en DB (SQLite) del archivo .parquet
     logger.info("Cargando datos en base de datos SQLite desde archivo .parquet...")
 
     df_data_parquet = pd.read_parquet(parquet_file_path)
     db_path = os.path.join(db_folder, database_name)
-    #create_database_tables(db_path)
-    #insert_data_to_db(df_data_parquet, db_path)
+    create_database_tables(db_path)
+    insert_data_to_db(df_data_parquet, db_path)
 
     # 8. Operaciones de agregación
     logger.info("Realizando consultas de agregación...")
