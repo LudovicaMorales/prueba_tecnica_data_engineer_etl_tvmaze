@@ -22,6 +22,6 @@ shell:
 		--name $(IMAGE_NAME) \
 		$(IMAGE_NAME):$(TAG) bash
 
-# Ejecuta el ETL (ten en cuenta que este comando se ejecuta en el host)
+# Ejecuta el ETL
 etl:
 	poetry run python src/main_etl.py
