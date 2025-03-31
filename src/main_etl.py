@@ -7,7 +7,7 @@ import pandas as pd
 
 from extraction import fetch_tvmaze_schedule, save_json_response
 from transform import create_dataframe_from_json, perform_data_cleaning
-from analysis import generate_profiling_report
+from analysis import generate_profiling_report, run_aggregations
 from load import save_as_parquet, create_database_tables, insert_data_to_db
 
 logging.basicConfig(
@@ -66,12 +66,12 @@ def main():
 
     df_data_parquet = pd.read_parquet(parquet_file_path)
     db_path = os.path.join(db_folder, database_name)
-    create_database_tables(db_path)
-    insert_data_to_db(df_data_parquet, db_path)
+    #create_database_tables(db_path)
+    #insert_data_to_db(df_data_parquet, db_path)
 
     # 8. Operaciones de agregación
     logger.info("Realizando consultas de agregación...")
-    #run_aggregations(df_clean)
+    run_aggregations(df_data_parquet)
 
     logger.info("Proceso ETL finalizado exitosamente.")
 
