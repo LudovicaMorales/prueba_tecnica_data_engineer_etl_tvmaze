@@ -1,0 +1,55 @@
+# Bytecode de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Entornos virtuales
+.venv/
+env/
+venv/
+*.env
+
+# Archivos de configuración locales
+*.log
+*.DS_Store
+*.swp
+*.swo
+
+# Archivos y carpetas ocultas del sistema
+Thumbs.db
+ehthumbs.db
+Icon?
+.DS_Store
+
+# Archivos de pruebas
+.coverage
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# Archivos de profiling si los generas
+*.prof
+
+# Archivos específicos del IDE
+.vscode/
+.idea/
+
+# Docker y otros build artifacts
+*.tar
+*.gz
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Archivos exportados
+*.csv
+*.tsv
+*.xlsx
+
+secrets.yaml
+config.yaml
