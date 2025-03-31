@@ -11,6 +11,7 @@ requests = "^2.32.3"
 pandas = "^2.2.3"
 ydata-profiling = "^4.16.1"
 pytest = "^8.3.5"
+beautifulsoup4 = "^4.13.3"
 
 
 [build-system]

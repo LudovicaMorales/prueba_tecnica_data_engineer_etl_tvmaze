@@ -5,7 +5,7 @@ from datetime import date, timedelta
 from typing import List
 
 from extraction import fetch_tvmaze_schedule, save_json_response
-from transform import create_dataframe_from_json
+from transform import create_dataframe_from_json, perform_data_cleaning
 from analysis import generate_profiling_report
 
 logging.basicConfig(
@@ -44,12 +44,12 @@ def main():
 
     # 5. Generar profiling
     logger.info("Generando reporte de profiling...")
-    profile_file = os.path.join(profiling_folder, "profiling_report.html")
-    generate_profiling_report(df, profile_file)
+    #profile_file = os.path.join(profiling_folder, "profiling_report.html")
+    #generate_profiling_report(df, profile_file)
 
     # 6. Limpieza / transformaciones
-    #logger.info("Limpieza y transformaciones en los datos...")
-    #df_clean = perform_data_cleaning(df)
+    logger.info("Limpieza y transformaciones en los datos...")
+    df_clean = perform_data_cleaning(df)
 
     logger.info("Proceso ETL finalizado exitosamente.")
 
