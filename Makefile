@@ -2,23 +2,26 @@
 IMAGE_NAME = prueba_tecnica_data_engineer_etl_tvmaze
 TAG = latest
 
-.PHONY: build run shell
+.PHONY: build run shell etl
 
-# Construye la imagen Docker
+# Construye la imagen Docker (solo cuando cambies dependencias o el Dockerfile)
 build:
 	docker build -t $(IMAGE_NAME):$(TAG) .
 
-# Ejecuta el contenedor
+# Ejecuta el contenedor en modo desarrollo, montando el directorio actual en /app
 run:
 	docker run --rm -it \
+		-v $(PWD):/app \
 		--name $(IMAGE_NAME) \
 		$(IMAGE_NAME):$(TAG)
 
-# Para abrir una shell interactiva dentro del contenedor 
+# Abre una shell interactiva dentro del contenedor con el código montado
 shell:
 	docker run --rm -it \
+		-v $(PWD):/app \
 		--name $(IMAGE_NAME) \
 		$(IMAGE_NAME):$(TAG) bash
 
+# Ejecuta el ETL (ten en cuenta que este comando se ejecuta en el host)
 etl:
 	poetry run python src/main_etl.py

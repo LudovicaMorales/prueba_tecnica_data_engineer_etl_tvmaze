@@ -5,6 +5,8 @@ from datetime import date, timedelta
 from typing import List
 
 from extraction import fetch_tvmaze_schedule, save_json_response
+from transform import create_dataframe_from_json, perform_data_cleaning
+from analysis import generate_profiling_report
 
 logging.basicConfig(
     level=logging.INFO,
@@ -27,14 +29,27 @@ def main():
     # 2. Definición de rutas
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     json_folder = os.path.join(project_root, "json")
-    os.makedirs(json_folder, exist_ok=True)
+    profiling_folder = os.path.join(project_root, "profiling")
 
     # 3. Extraer datos para todos los días de enero del 2024
-    all_dates_jan_2024 = get_all_dates_for_month(year, month)
+    """all_dates_jan_2024 = get_all_dates_for_month(year, month)
     for day in all_dates_jan_2024:
         logger.info(f"Obteniendo data para fecha: {day}")
         response_json = fetch_tvmaze_schedule(day)
-        save_json_response(response_json, json_folder, day)
+        save_json_response(response_json, json_folder, day)"""
+    
+    # 4. Transformar datos (generar Dataframe de Pandas)
+    logger.info("Creando DataFrames desde JSON...")
+    df = create_dataframe_from_json(json_folder)
+
+    # 5. Generar profiling
+    logger.info("Generando reporte de profiling...")
+    #profile_file = os.path.join(profiling_folder, "profiling_report.html")
+    #generate_profiling_report(df, profile_file)
+
+    # 6. Limpieza / transformaciones
+    logger.info("Limpieza y transformaciones en los datos...")
+    df_clean = perform_data_cleaning(df)
 
     logger.info("Proceso ETL finalizado exitosamente.")
 
